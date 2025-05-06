@@ -10,12 +10,14 @@
     <script id="MathJax-script" async
           src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js">
     </script>
+    <script src="https://cdn.plot.ly/plotly-3.0.1.min.js" charset="utf-8"></script>
   </head>
   <body>
     <div class="Margins">
       <p class="LatexTitle">{{ page.title }}</p>
       {% if page.author %} <p class="LatexName">{{ page.author }}</p> {% endif %}
       {% if page.date %} <p class="LatexDate">{{ page.date }}</p> {% endif %}
+      <p class="LatexDate"><a>Paper</a> | <a href="https://github.com/osqarrupc/OPF_realtime">Code</a> | <a href="/assets/docs/index.html" target="_blank">Docs</a></p>
       
       {% if page.abstract %}<div class="AbstractMargins">
         <p class="LatexAbstract">Abstract</p>
@@ -27,6 +29,7 @@
 
 
     </div>
+    <script type="module" src="/assets/js/optimization.js"></script>
   </body>
   <footer class="footerSize">
 

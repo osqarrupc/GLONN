@@ -1,0 +1,61 @@
+opf\_realtime package
+=====================
+
+Submodules
+----------
+
+opf\_realtime.NN\_models module
+-------------------------------
+
+.. automodule:: opf_realtime.NN_models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+opf\_realtime.OPF\_formulas module
+----------------------------------
+
+.. automodule:: opf_realtime.OPF_formulas
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+opf\_realtime.graph module
+--------------------------
+
+.. automodule:: opf_realtime.graph
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+opf\_realtime.prueba\_2 module
+------------------------------
+
+.. automodule:: opf_realtime.prueba_2
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+opf\_realtime.train\_nn module
+------------------------------
+
+.. automodule:: opf_realtime.train_nn
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+opf\_realtime.utils module
+--------------------------
+
+.. automodule:: opf_realtime.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: opf_realtime
+   :members:
+   :undoc-members:
+   :show-inheritance:

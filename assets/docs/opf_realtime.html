@@ -1,0 +1,1068 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>opf_realtime package &mdash; OPF_realtime 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            OPF_realtime
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">opf_realtime package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-opf_realtime.NN_models">opf_realtime.NN_models module</a><ul>
+<li><a class="reference internal" href="#opf_realtime.NN_models.GNN"><code class="docutils literal notranslate"><span class="pre">GNN</span></code></a><ul>
+<li><a class="reference internal" href="#opf_realtime.NN_models.GNN.forward"><code class="docutils literal notranslate"><span class="pre">GNN.forward()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opf_realtime.NN_models.PGNN"><code class="docutils literal notranslate"><span class="pre">PGNN</span></code></a><ul>
+<li><a class="reference internal" href="#opf_realtime.NN_models.PGNN.check_variables"><code class="docutils literal notranslate"><span class="pre">PGNN.check_variables()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.NN_models.PGNN.cost_function"><code class="docutils literal notranslate"><span class="pre">PGNN.cost_function()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.NN_models.PGNN.equality_constraints"><code class="docutils literal notranslate"><span class="pre">PGNN.equality_constraints()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.NN_models.PGNN.forward"><code class="docutils literal notranslate"><span class="pre">PGNN.forward()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.NN_models.PGNN.lagrange"><code class="docutils literal notranslate"><span class="pre">PGNN.lagrange()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.NN_models.PGNN.print_results"><code class="docutils literal notranslate"><span class="pre">PGNN.print_results()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opf_realtime.NN_models.create_model"><code class="docutils literal notranslate"><span class="pre">create_model()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.NN_models.graph_nn"><code class="docutils literal notranslate"><span class="pre">graph_nn()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.NN_models.load_model"><code class="docutils literal notranslate"><span class="pre">load_model()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.NN_models.physic_graph_nn"><code class="docutils literal notranslate"><span class="pre">physic_graph_nn()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opf_realtime.OPF_formulas">opf_realtime.OPF_formulas module</a><ul>
+<li><a class="reference internal" href="#opf_realtime.OPF_formulas.ipopt_opf"><code class="docutils literal notranslate"><span class="pre">ipopt_opf()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.OPF_formulas.run_opf_methods"><code class="docutils literal notranslate"><span class="pre">run_opf_methods()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opf_realtime.graph">opf_realtime.graph module</a><ul>
+<li><a class="reference internal" href="#opf_realtime.graph.evolution"><code class="docutils literal notranslate"><span class="pre">evolution()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.graph.extract_num_buses"><code class="docutils literal notranslate"><span class="pre">extract_num_buses()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.graph.net_display"><code class="docutils literal notranslate"><span class="pre">net_display()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#opf-realtime-prueba-2-module">opf_realtime.prueba_2 module</a></li>
+<li><a class="reference internal" href="#module-opf_realtime.train_nn">opf_realtime.train_nn module</a><ul>
+<li><a class="reference internal" href="#opf_realtime.train_nn.save_model"><code class="docutils literal notranslate"><span class="pre">save_model()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.train_nn.show_results"><code class="docutils literal notranslate"><span class="pre">show_results()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.train_nn.train_gnn"><code class="docutils literal notranslate"><span class="pre">train_gnn()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.train_nn.train_models"><code class="docutils literal notranslate"><span class="pre">train_models()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.train_nn.train_pgnn"><code class="docutils literal notranslate"><span class="pre">train_pgnn()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opf_realtime.utils">opf_realtime.utils module</a><ul>
+<li><a class="reference internal" href="#opf_realtime.utils.check_constraints"><code class="docutils literal notranslate"><span class="pre">check_constraints()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.utils.data2network"><code class="docutils literal notranslate"><span class="pre">data2network()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.utils.data2networkPGNN"><code class="docutils literal notranslate"><span class="pre">data2networkPGNN()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.utils.erase_temp_folder"><code class="docutils literal notranslate"><span class="pre">erase_temp_folder()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.utils.get_base_name"><code class="docutils literal notranslate"><span class="pre">get_base_name()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.utils.mutate_network"><code class="docutils literal notranslate"><span class="pre">mutate_network()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.utils.network_files"><code class="docutils literal notranslate"><span class="pre">network_files()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.utils.prepare_data"><code class="docutils literal notranslate"><span class="pre">prepare_data()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.utils.read_results"><code class="docutils literal notranslate"><span class="pre">read_results()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.utils.results_stats"><code class="docutils literal notranslate"><span class="pre">results_stats()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.utils.show_metrics"><code class="docutils literal notranslate"><span class="pre">show_metrics()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.utils.training_phase"><code class="docutils literal notranslate"><span class="pre">training_phase()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.utils.training_save"><code class="docutils literal notranslate"><span class="pre">training_save()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opf_realtime">Module contents</a><ul>
+<li><a class="reference internal" href="#opf_realtime.erase_temp_folder"><code class="docutils literal notranslate"><span class="pre">erase_temp_folder()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.network_files"><code class="docutils literal notranslate"><span class="pre">network_files()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.run_opf_methods"><code class="docutils literal notranslate"><span class="pre">run_opf_methods()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.show_metrics"><code class="docutils literal notranslate"><span class="pre">show_metrics()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.train_models"><code class="docutils literal notranslate"><span class="pre">train_models()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.training_phase"><code class="docutils literal notranslate"><span class="pre">training_phase()</span></code></a></li>
+<li><a class="reference internal" href="#opf_realtime.training_save"><code class="docutils literal notranslate"><span class="pre">training_save()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OPF_realtime</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">opf_realtime package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/opf_realtime.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="opf-realtime-package">
+<h1>opf_realtime package<a class="headerlink" href="#opf-realtime-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-opf_realtime.NN_models">
+<span id="opf-realtime-nn-models-module"></span><h2>opf_realtime.NN_models module<a class="headerlink" href="#module-opf_realtime.NN_models" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="opf_realtime.NN_models.GNN">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opf_realtime.NN_models.</span></span><span class="sig-name descname"><span class="pre">GNN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_channels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden_channels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_channels</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.NN_models.GNN" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opf_realtime.NN_models.GNN.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.NN_models.GNN.forward" title="Link to this definition"></a></dt>
+<dd><p>Define the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opf_realtime.NN_models.PGNN">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opf_realtime.NN_models.</span></span><span class="sig-name descname"><span class="pre">PGNN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_channels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden_channels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_channels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.NN_models.PGNN" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opf_realtime.NN_models.PGNN.check_variables">
+<span class="sig-name descname"><span class="pre">check_variables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gen_P</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.NN_models.PGNN.check_variables" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opf_realtime.NN_models.PGNN.cost_function">
+<span class="sig-name descname"><span class="pre">cost_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gen_P</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.NN_models.PGNN.cost_function" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opf_realtime.NN_models.PGNN.equality_constraints">
+<span class="sig-name descname"><span class="pre">equality_constraints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gen_P</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.NN_models.PGNN.equality_constraints" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opf_realtime.NN_models.PGNN.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.NN_models.PGNN.forward" title="Link to this definition"></a></dt>
+<dd><p>Define the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opf_realtime.NN_models.PGNN.lagrange">
+<span class="sig-name descname"><span class="pre">lagrange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen_P</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.NN_models.PGNN.lagrange" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opf_realtime.NN_models.PGNN.print_results">
+<span class="sig-name descname"><span class="pre">print_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gen_P</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.NN_models.PGNN.print_results" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.NN_models.create_model">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.NN_models.</span></span><span class="sig-name descname"><span class="pre">create_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_channels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_channels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden_channels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.NN_models.create_model" title="Link to this definition"></a></dt>
+<dd><p>Creates and returns a neural network model based on the specified type.</p>
+<p>Parameters:
+- in_channels (int): Number of input features per node.
+- out_channels (int): Number of output features per node.
+- model_type (str): Type of model to create. Options:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>‘gnn’: A standard Graph Neural Network (GNN).</p></li>
+<li><p>‘pgnn’: A Physics-Guided Graph Neural Network (PGNN).</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>limits (optional, any): Additional constraints or parameters required for the PGNN model.</p></li>
+<li><p>hidden_channels (int, optional): Number of hidden units in the model. Default is 16.</p></li>
+</ul>
+<p>Returns:
+- model (torch.nn.Module): The initialized neural network model, either a GNN or PGNN.</p>
+<p>Notes:
+- If <cite>model_type</cite> is ‘gnn’, a standard GNN model is created.
+- If <cite>model_type</cite> is ‘pgnn’, a PGNN model is created with optional <cite>limits</cite> constraints.
+- The <cite>hidden_channels</cite> parameter determines the complexity of the hidden layers.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.NN_models.graph_nn">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.NN_models.</span></span><span class="sig-name descname"><span class="pre">graph_nn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datasets_gnn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.NN_models.graph_nn" title="Link to this definition"></a></dt>
+<dd><p>Executes a Graph Neural Network (GNN)-based Optimal Power Flow (OPF) on a given network.</p>
+<p>Parameters:
+- net (str): The name of the network file (MATPOWER format).
+- features (dict): Dictionary containing various parameters for OPF execution, including:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>train (bool, optional): If True, the function is executed in training mode and does not display results.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>verbose (bool, optional): If True, displays detailed results and visualization of the OPF and network.</p></li>
+<li><p>datasets_gnn (list, optional): A list to store datasets generated for training a neural network.</p></li>
+</ul>
+<p>Returns:
+- results (dict): Dictionary containing:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>‘total_cost’ (float): The computed operational cost of the network.</p></li>
+<li><p>‘time’ (float): Execution time of the OPF.</p></li>
+<li><p>‘datasets_gnn’ (list, optional): The dataset used for GNN training, if applicable.</p></li>
+</ul>
+</div></blockquote>
+<p>Notes:
+- The function first checks if a trained GNN model exists for the network. If not, a new model is created.
+- Calls an external Octave script (<cite>run_matpower.m</cite>) to process the network data.
+- Uses a trained GNN model to predict optimal power dispatch.
+- Computes the total operational cost based on generator costs.
+- If <cite>verbose</cite> is True and <cite>train</cite> is False, displays results graphically.
+- Execution time is logged.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.NN_models.load_model">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.NN_models.</span></span><span class="sig-name descname"><span class="pre">load_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.NN_models.load_model" title="Link to this definition"></a></dt>
+<dd><p>Loads a pre-trained neural network model from a file.</p>
+<p>Parameters:
+- input_dim (int): Number of input features per node.
+- output_dim (int): Number of output features per node.
+- model_name (str): Path to the saved model file. The model type is determined based on the filename:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If the filename ends with ‘gnn_model.pth’, a Graph Neural Network (GNN) is loaded.</p></li>
+<li><p>Otherwise, a Physics-Guided Graph Neural Network (PGNN) is assumed.</p></li>
+</ul>
+</div></blockquote>
+<p>Returns:
+- model (torch.nn.Module): The loaded model with its trained parameters.</p>
+<p>Notes:
+- The function determines the model type automatically based on the filename.
+- The model’s state dictionary is loaded from the provided file.
+- Ensure that the file path is correct and contains a valid saved model.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.NN_models.physic_graph_nn">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.NN_models.</span></span><span class="sig-name descname"><span class="pre">physic_graph_nn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datasets_gnn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.NN_models.physic_graph_nn" title="Link to this definition"></a></dt>
+<dd><p>Executes a Physics-Informed Graph Neural Network (PGNN)-based Optimal Power Flow (OPF) on a given network.</p>
+<p>Parameters:
+- net (str): The name of the network file (MATPOWER format).
+- features (dict): Dictionary containing various parameters for OPF execution, including:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>train (bool, optional): If True, the function is executed in training mode and does not display results.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>verbose (bool, optional): If True, displays detailed results and visualization of the OPF and network.</p></li>
+<li><p>datasets_gnn (list, optional): A list to store datasets generated for training a neural network.</p></li>
+</ul>
+<p>Returns:
+- results (dict): Dictionary containing:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>‘total_cost’ (float): The computed operational cost of the network.</p></li>
+<li><p>‘time’ (float): Execution time of the OPF.</p></li>
+<li><p>‘datasets_gnn’ (list, optional): The dataset used for PGNN training, if applicable.</p></li>
+</ul>
+</div></blockquote>
+<p>Notes:
+- The function first checks if a trained GLONN model exists for the network. If not, a new model is created.
+- Calls an external Octave script (<cite>run_matpower.m</cite>) to process the network data.
+- Uses a trained PGNN model to predict optimal power dispatch.
+- Computes the total operational cost based on generator costs.
+- If <cite>verbose</cite> is True and <cite>train</cite> is False, displays results graphically.
+- Execution time is logged.</p>
+</dd></dl>
+
+</section>
+<section id="module-opf_realtime.OPF_formulas">
+<span id="opf-realtime-opf-formulas-module"></span><h2>opf_realtime.OPF_formulas module<a class="headerlink" href="#module-opf_realtime.OPF_formulas" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.OPF_formulas.ipopt_opf">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.OPF_formulas.</span></span><span class="sig-name descname"><span class="pre">ipopt_opf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datasets_gnn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.OPF_formulas.ipopt_opf" title="Link to this definition"></a></dt>
+<dd><p>Runs an Optimal Power Flow (OPF) using MATPOWER through an Octave script.</p>
+<p>This function constructs a command to execute an Octave script, which runs
+MATPOWER’s Optimal Power Flow (OPF) for a given network case file. It captures
+the output, extracts the power values (bus powers) and total generation cost,
+and returns them as a matrix and a float, respectively.</p>
+<p>Args:
+- net (str): The network case file name (with path) to be used in the OPF.
+- features (any): A placeholder argument (currently unused) for additional features</p>
+<blockquote>
+<div><p>that may be added in future versions of the function.</p>
+</div></blockquote>
+<ul class="simple">
+<li><dl class="simple">
+<dt>verbose (bool, optional): If set to True, additional details will be printed during execution</dt><dd><p>(currently not implemented).</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Returns:
+- results (dict): A dictionary containing:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>‘total_cost’ (float): The total cost of generation calculated by the OPF.</p></li>
+<li><p>‘time’ (float): Execution time of the OPF.</p></li>
+<li><p>‘datasets_gnn’ (list): A list where processed network data is appended.</p></li>
+</ul>
+</div></blockquote>
+<p>Note:
+- The function assumes that Octave and the necessary MATPOWER files are correctly</p>
+<blockquote>
+<div><p>installed and configured on the system.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>The path to the network file and Octave script is hardcoded, so it may need
+to be updated based on the user’s directory structure.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.OPF_formulas.run_opf_methods">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.OPF_formulas.</span></span><span class="sig-name descname"><span class="pre">run_opf_methods</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datasets_gnn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.OPF_formulas.run_opf_methods" title="Link to this definition"></a></dt>
+<dd><p>Executes multiple Optimal Power Flow (OPF) methods as specified and collects their results.</p>
+<p>Parameters:
+- method_names (list of str): List of OPF method names to execute. Each method name must correspond</p>
+<blockquote>
+<div><p>to a key in the <cite>opf_methods</cite> dictionary, where each key is a method and the associated value is
+a function for running OPF.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>net (MATPOWER Net): The MATPOWER network object to perform OPF on.</p></li>
+<li><dl class="simple">
+<dt>features (dict): Dictionary of parameters and settings used within each OPF method, including:</dt><dd><ul>
+<li><p>train (boolean): If True, it will generate training sets.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>verbose (bool): If True, displays detailed results and visualization of the OPF and network.</p></li>
+<li><p>datasets_gnn (list, optional): A list that stores the datasets generated during OPF execution,
+intended for training a neural network.</p></li>
+</ul>
+<p>Returns:
+- results (dict): Dictionary where each key is an OPF method name and the value is the results of</p>
+<blockquote>
+<div><p>that method’s OPF calculation.</p>
+</div></blockquote>
+<p>Notes:
+- If <cite>verbose</cite> is True, the function displays the initial network state and results for each OPF method, except while training.
+- Only methods present in the <cite>opf_methods</cite> dictionary will be executed; any unrecognized methods are logged as errors.
+- The <cite>datasets_gnn</cite> list is updated with new datasets generated during OPF execution if the <cite>train</cite> flag in <cite>features</cite> is set to True.</p>
+</dd></dl>
+
+</section>
+<section id="module-opf_realtime.graph">
+<span id="opf-realtime-graph-module"></span><h2>opf_realtime.graph module<a class="headerlink" href="#module-opf_realtime.graph" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.graph.evolution">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.graph.</span></span><span class="sig-name descname"><span class="pre">evolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aggregated_mean</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(7.5,</span> <span class="pre">6)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.graph.evolution" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.graph.extract_num_buses">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.graph.</span></span><span class="sig-name descname"><span class="pre">extract_num_buses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.graph.extract_num_buses" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.graph.net_display">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.graph.</span></span><span class="sig-name descname"><span class="pre">net_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buses_indexes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(5,</span> <span class="pre">4)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.graph.net_display" title="Link to this definition"></a></dt>
+<dd><p>Displays a network graph of node features using NetworkX and matplotlib.</p>
+<p>This function visualizes a network graph where each node represents a bus or generator
+with a feature value (e.g., active power). Nodes can be colored by their value using a colormap,
+and optionally descaled if a scaler is found in cache.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>features</strong> (<em>torch.Tensor</em>) – A 1D tensor of feature values for each node in the network.</p></li>
+<li><p><strong>edges</strong> (<em>torch.Tensor</em>) – A 2D tensor with shape (2, num_edges) representing the connections between nodes.</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – A string to label the plot. If the title is not ‘GLONN’ and a scaler exists, features are descaled.</p></li>
+<li><p><strong>buses_indexes</strong> (<em>list</em><em> of </em><em>int</em>) – Indexes of nodes to be emphasized (e.g., buses), shown with colored values.</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em><em>, </em><em>optional</em>) – Figure size in inches (default is (5, 4)).</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>Features are optionally descaled using a cached <cite>scaler.pkl</cite> file.</p></li>
+<li><p>Nodes not in <cite>buses_indexes</cite> are shown in light gray.</p></li>
+<li><p>A colorbar is added to show the value range of the highlighted nodes.</p></li>
+<li><p>Uses a spring layout for node positioning.</p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="opf-realtime-prueba-2-module">
+<h2>opf_realtime.prueba_2 module<a class="headerlink" href="#opf-realtime-prueba-2-module" title="Link to this heading"></a></h2>
+</section>
+<section id="module-opf_realtime.train_nn">
+<span id="opf-realtime-train-nn-module"></span><h2>opf_realtime.train_nn module<a class="headerlink" href="#module-opf_realtime.train_nn" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.train_nn.save_model">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.train_nn.</span></span><span class="sig-name descname"><span class="pre">save_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.train_nn.save_model" title="Link to this definition"></a></dt>
+<dd><p>Saves the model parameters to a file.</p>
+<p>This function stores the state dictionary of a PyTorch model to the specified path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>torch.nn.Module</em>) – The PyTorch model to save.</p></li>
+<li><p><strong>model_name</strong> (<em>str</em><em> or </em><em>Path</em>) – The path (including filename) where the model will be saved.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Uses <cite>torch.save</cite> to write the model’s state_dict.
+Logs a confirmation message after saving.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.train_nn.show_results">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.train_nn.</span></span><span class="sig-name descname"><span class="pre">show_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss_history</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.train_nn.show_results" title="Link to this definition"></a></dt>
+<dd><p>Displays training loss and prints prediction error if applicable.</p>
+<p>This function plots the training loss over epochs and, if a dataset is provided and the
+model is a GNN (e.g., using SAGEConv), it calculates and logs the Root Mean Squared Error (RMSE)
+between predictions and ground truth.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>torch.nn.Module</em>) – The trained model. Should be a GNN if prediction is to be performed.</p></li>
+<li><p><strong>loss_history</strong> (<em>list</em><em> of </em><em>float</em><em>, </em><em>optional</em>) – A list containing the loss values over training epochs. If provided, it will be plotted.</p></li>
+<li><p><strong>dataset</strong> (<em>torch_geometric.data.Dataset</em><em> or </em><em>list</em><em>, </em><em>optional</em>) – Dataset to use for evaluation. Must contain at least one data object with <cite>.x</cite>, <cite>.edge_index</cite>, and <cite>.y</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>Assumes the model’s forward method accepts <cite>(x, edge_index)</cite> as input.</p></li>
+<li><p>Only computes RMSE if the model contains a <cite>SAGEConv</cite> layer and <cite>dataset</cite> is not None.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.train_nn.train_gnn">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.train_nn.</span></span><span class="sig-name descname"><span class="pre">train_gnn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_loader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.train_nn.train_gnn" title="Link to this definition"></a></dt>
+<dd><p>Trains a Graph Neural Network (GNN) model using mean squared error loss.</p>
+<p>This function trains a GNN using batches of data provided by a DataLoader.
+The training uses the Adam optimizer and mean squared error as the loss function.
+Loss history is returned and optionally printed every 10 epochs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>torch.nn.Module</em>) – A GNN model with a forward method that accepts (x, edge_index) as input.</p></li>
+<li><p><strong>train_loader</strong> (<em>torch_geometric.loader.DataLoader</em>) – A DataLoader providing batches of graph data for training.</p></li>
+<li><p><strong>epochs</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of training epochs (default is 1000).</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, logs the loss every 10 epochs (default is False).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The history of loss values across all epochs.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of float</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>Moves the model and batches to GPU if available.</p></li>
+<li><p>Assumes <cite>batch.y</cite> contains the target values for supervised training.</p></li>
+<li><p>Loss is computed using <cite>torch.nn.MSELoss</cite>.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.train_nn.train_models">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.train_nn.</span></span><span class="sig-name descname"><span class="pre">train_models</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">networks</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.train_nn.train_models" title="Link to this definition"></a></dt>
+<dd><p>Trains GNN and PGNN models for a list of power networks.</p>
+<p>This function iterates over two model types (<cite>gnn</cite> and <cite>pgnn</cite>) and trains a corresponding model
+for each network specified in the <cite>networks</cite> list.</p>
+<ul class="simple">
+<li><p>For GNNs, it loads pre-processed <cite>.pt</cite> dataset files and trains using a DataLoader.</p></li>
+<li><p>For PGNNs, it runs an Octave script to generate the data from MATPOWER <cite>.m</cite> files,
+converts it into PyTorch Geometric format, and trains the model.</p></li>
+</ul>
+<p>Models are saved in the <cite>training_data</cite> directory under the root project path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>networks</strong> (<em>list</em><em> of </em><em>str</em>) – A list of network names (e.g., [‘case14’, ‘case30’]) for which models should be trained.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The function assumes the presence of <cite>LNN_inputs_train.m</cite> in the <cite>matpower</cite> directory
+to generate input data for PGNN models.</p></li>
+<li><p>Trained models are stored as <cite>.pth</cite> files, with naming format:
+<cite>&lt;network&gt;_gnn_model.pth</cite> or <cite>&lt;network&gt;_pgnn_model.pth</cite>.</p></li>
+<li><p>Uses a fixed number of training epochs: 5000 for GNNs and 30000 for PGNNs.</p></li>
+<li><p>Logs any exceptions that occur during training.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.train_nn.train_pgnn">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.train_nn.</span></span><span class="sig-name descname"><span class="pre">train_pgnn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.train_nn.train_pgnn" title="Link to this definition"></a></dt>
+<dd><p>Trains the GLONN model.</p>
+<p>This function trains GLONN model for a fixed number of epochs using the Adam optimizer.
+The loss is computed by calling the model’s forward method, which is expected to return
+both the loss and predicted generation values. Loss history is stored and optionally printed
+at regular intervals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>torch.nn.Module</em>) – A PGNN model that implements a callable forward method returning (loss, predicted_values).</p></li>
+<li><p><strong>epochs</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of training epochs (default is 30000).</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, logs training loss every 1000 epochs (default is False).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The history of loss values for each epoch.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of float</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The model is moved to CUDA if available.</p></li>
+<li><p>The learning rate is taken from <cite>model.learning_rate</cite>.</p></li>
+<li><p>Assumes that <cite>model()</cite> returns a tuple <cite>(loss, gen_P)</cite>.</p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="module-opf_realtime.utils">
+<span id="opf-realtime-utils-module"></span><h2>opf_realtime.utils module<a class="headerlink" href="#module-opf_realtime.utils" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.utils.check_constraints">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.utils.</span></span><span class="sig-name descname"><span class="pre">check_constraints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prediction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_cost</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matpower_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.utils.check_constraints" title="Link to this definition"></a></dt>
+<dd><p>Checks the feasibility and computes error metrics for power system predictions.</p>
+<p>This function computes various error metrics, feasibility constraints, and cost
+differences between the predicted and real values for a power system model. It
+also runs an Octave script to extract real system values and performs checks on
+nodal power flow, branch power limits, and generator power limits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>prediction</strong> (<em>torch.Tensor</em>) – The predicted power generation for each generator.</p></li>
+<li><p><strong>pred_cost</strong> (<em>torch.Tensor</em>) – The predicted cost of power generation.</p></li>
+<li><p><strong>net</strong> (<em>str</em>) – The network data, which is used in the Octave script.</p></li>
+<li><p><strong>matpower_path</strong> (<em>Path</em>) – The directory containing the Matpower files.</p></li>
+<li><p><strong>model_type</strong> (<em>str</em>) – The type of the model being used (e.g., “pgnn”).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary containing error metrics and feasibility constraints.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.utils.data2network">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.utils.</span></span><span class="sig-name descname"><span class="pre">data2network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.utils.data2network" title="Link to this definition"></a></dt>
+<dd><p>Processes the network data from the MATPOWER solver output and prepares it for use in neural networks.
+This function reads various network variables, processes them (such as adjusting generation node information
+and scaling values), and prepares the data in a suitable format for graph-based learning models.</p>
+<p>Parameters:
+- output (str): The output data (from MATPOWER) to process.</p>
+<p>Returns:
+- dict: A dictionary containing:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>‘data’: A PyTorch Geometric Data object with processed node features, edge indices, and node outputs.</p></li>
+<li><p>‘gen_cost’: Generator cost data.</p></li>
+</ul>
+</div></blockquote>
+<p>Notes:
+- This function reads various network variables including buses, bus powers, edge indices, generator limits,</p>
+<blockquote>
+<div><p>and generator cost from the output.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>It processes the generator cost data and adjusts the node features accordingly.</p></li>
+<li><p>The final processed data is then converted to a graph format using PyTorch Geometric (PyG) Data objects.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.utils.data2networkPGNN">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.utils.</span></span><span class="sig-name descname"><span class="pre">data2networkPGNN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.utils.data2networkPGNN" title="Link to this definition"></a></dt>
+<dd><p>Converts the given MATPOWER text output data into a network format for the Physics-Informed Graph Neural Network (GLONN).</p>
+<p>This function extracts the relevant information from the output string, such as buses, branches, generators, and base parameters,
+and processes it into tensors and matrices suitable for neural network models. The function also constructs
+adjacency matrices, reactance values, and branch information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>output</strong> (<em>str</em>) – A string containing the network data to be parsed and processed.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary containing the network parameters, including tensors for generators, buses, branches,
+and the graph structure (edges, adjacency matrix, etc.).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.utils.erase_temp_folder">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.utils.</span></span><span class="sig-name descname"><span class="pre">erase_temp_folder</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.utils.erase_temp_folder" title="Link to this definition"></a></dt>
+<dd><p>Removes temporary folders (.datasets and .cache) if they exist.</p>
+<p>This function checks if the directories <cite>/.datasets</cite> and
+<cite>/.cache</cite> exist. If they do, the function removes them
+using <cite>shutil.rmtree()</cite>. This is typically used to clean up temporary
+data storage after processing or to reset the environment.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.utils.get_base_name">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.utils.</span></span><span class="sig-name descname"><span class="pre">get_base_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.utils.get_base_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.utils.mutate_network">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.utils.</span></span><span class="sig-name descname"><span class="pre">mutate_network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_mutations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_variation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.utils.mutate_network" title="Link to this definition"></a></dt>
+<dd><p>Function to mutate a MATPOWER network by introducing random variations
+in the power loads (active and reactive power). It ensures the necessary
+startup configurations for MATPOWER are loaded, saves the original network,
+and generates mutated versions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>net</strong> (<em>str</em>) – Name of the network file to process (without extension).</p></li>
+<li><p><strong>num_mutations</strong> (<em>int</em>) – Number of mutated versions to generate.</p></li>
+<li><p><strong>max_variation</strong> (<em>float</em><em>, </em><em>optional</em>) – Maximum variation range for the mutations
+(default is 10, meaning P±&gt;10MW and Q±&gt;10MVAr).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<section id="mutation-logic">
+<h3>Mutation Logic:<a class="headerlink" href="#mutation-logic" title="Link to this heading"></a></h3>
+<p>The mutation process involves adding random variations to the power loads (P and Q)
+of the network’s buses. For each bus:</p>
+<ol class="arabic">
+<li><p>Extract the current active power (P) and reactive power (Q) from the bus data.</p></li>
+<li><p>Generate random variations for P and Q using the formula:
+variation = rand() * 2 * max_variation - max_variation</p>
+<p>This formula ensures the variation lies within the range [-max_variation, max_variation].</p>
+<p>If max_variation = 0.1:
+- rand() generates a random number in [0, 1].
+- The variation range is [-0.1, 0.1].</p>
+<p>Specific cases:
+- rand() = 0.0 → variation = -0.1
+- rand() = 0.5 → variation = 0.0
+- rand() = 1.0 → variation = 0.1</p>
+</li>
+<li><p>Add the generated variations to the original P and Q values.</p></li>
+<li><p>Save the mutated values back into the bus matrix.</p>
+<p>Original P = 100 MW, Original Q = 50 MVAR, max_variation = 10:
+- rand() for Q = 8 → P_variation = 92 → Mutated P = 100 - 8 = 92 MW
+- rand() for Q = 6 → Q_variation = 44 → Mutated Q = 50 - 6 = 44 MVAR</p>
+</li>
+</ol>
+<p>This process is repeated for all buses in the network, and the mutated network is saved
+as a new .mat file for each mutation.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.utils.network_files">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.utils.</span></span><span class="sig-name descname"><span class="pre">network_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_mutations</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.utils.network_files" title="Link to this definition"></a></dt>
+<dd><p>Mutates the given network file and returns a list of all available network files in the datasets directory.</p>
+<p>This function first applies mutations to a specified network file and then scans the
+‘/.datasets’ directory for any <cite>.mat</cite> files representing network data.</p>
+<p>Parameters:
+- net (str): The name of the network file to mutate.
+- num_mutations (int): The number of mutations to apply to the network file.</p>
+<p>Returns:
+- list: A list of filenames (str) ending with ‘.mat’ from the ‘/.datasets’ directory.</p>
+<p>Notes:
+- The mutation is applied by calling the <cite>mutate_network</cite> function.
+- The returned list only includes files with a <cite>.mat</cite> extension.</p>
+<p>Example:
+- network_files(“network_1”, 10) would mutate “network_1” and return a list of <cite>.mat</cite> files from the datasets directory.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.utils.prepare_data">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.utils.</span></span><span class="sig-name descname"><span class="pre">prepare_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen_limits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_output</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.utils.prepare_data" title="Link to this definition"></a></dt>
+<dd><p>Prepares the data for training and evaluation by processing the node features,
+edge indices, generator limits, and node outputs. Scales the features using MinMaxScaler
+and returns the data in a graph format suitable for graph neural network processing.</p>
+<p>Parameters:
+- node_features (ndarray): Array containing the node features, where each row corresponds to a node</p>
+<blockquote>
+<div><p>and columns represent different types of features (e.g., active power, reactive power).</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>edge_index (ndarray): Array representing the indices of the edges (connections) between nodes.</p></li>
+<li><p>gen_limits (ndarray): Array representing the generator limits for each node.</p></li>
+<li><p>node_output (ndarray): Array containing the expected output for each node.</p></li>
+</ul>
+<p>Returns:
+- Data: A PyTorch Geometric Data object containing:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>x (Tensor): Node features in PyG format (transposed).</p></li>
+<li><p>edge_index (Tensor): Edge indices.</p></li>
+<li><p>y (Tensor): Node outputs (target values, i.e. Active Power) in PyG format (transposed).</p></li>
+</ul>
+</div></blockquote>
+<p>Notes:
+- This function creates a scaler directory if it doesn’t exist.
+- It expands the generator limits and scales node features using MinMaxScaler.
+- The function also handles the scaling of various node feature columns, such as active and reactive power.
+- After processing, the node features and output are returned as torch tensors.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.utils.read_results">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.utils.</span></span><span class="sig-name descname"><span class="pre">read_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.utils.read_results" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.utils.results_stats">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.utils.</span></span><span class="sig-name descname"><span class="pre">results_stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.utils.results_stats" title="Link to this definition"></a></dt>
+<dd><p>Aggregates the input results and calculates mean statistics per method.</p>
+<p>This function performs two main steps:
+1. It aggregates the results by grouping values for each method and submetric.
+2. It calculates the mean for each aggregated method and submetric.</p>
+<p>The function also calculates the average mean per method and calls the <cite>evolution</cite> function to process the aggregated mean.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>results</strong> (<em>dict</em>) – The input data containing the results to be processed. The expected structure is a dictionary with
+network names as keys and methods and metrics as nested dictionaries.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Exception</strong> – The function may raise an exception if the input data structure is invalid or if any part of the
+processing encounters an error.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A tuple containing:
+- aggregated_mean (dict): The aggregated mean statistics per method and submetric.
+- method_means_avg (dict): The average mean per method for all metrics.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.utils.show_metrics">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.utils.</span></span><span class="sig-name descname"><span class="pre">show_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.utils.show_metrics" title="Link to this definition"></a></dt>
+<dd><p>Displays aggregated and method-specific statistics from the given results.</p>
+<p>This function attempts to calculate the aggregated mean and method-specific means
+using the <cite>results_stats</cite> function. If successful, it prints these statistics.
+In case of an error (e.g., if <cite>results_stats</cite> raises an exception), an error
+message is printed indicating that the statistics could not be calculated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>results</strong> (list, dict, or other data structures (depending on the implementation of <cite>results_stats</cite>).) – The input data containing the results to be analyzed.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Exception</strong> – If an error occurs during the statistics calculation, it is caught and a message is printed.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.utils.training_phase">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.utils.</span></span><span class="sig-name descname"><span class="pre">training_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.utils.training_phase" title="Link to this definition"></a></dt>
+<dd><p>Determines whether the training phase should be executed based on the input features and
+returns the appropriate dataset for the graph neural network (GNN).</p>
+<p>This function checks if the ‘train’ key is present in the <cite>features</cite> dictionary and whether
+its value is set to <cite>True</cite>. If so, it initializes an empty list for the training datasets.
+If the ‘train’ key is not present or is set to <cite>False</cite>, it returns <cite>None</cite>.</p>
+<p>Parameters:
+- features (dict): A dictionary containing various features for training, which may include</p>
+<blockquote>
+<div><p>a key ‘train’ to specify if the model should be in training mode.</p>
+</div></blockquote>
+<p>Returns:
+- list or None: Returns an empty list <cite>[]</cite> if ‘train’ is <cite>True</cite>, or <cite>None</cite> if ‘train’ is</p>
+<blockquote>
+<div><p><cite>False</cite> or the key is absent in the <cite>features</cite> dictionary.</p>
+</div></blockquote>
+<p>Example:
+- training_phase({‘train’: True}) will return an empty list.
+- training_phase({‘train’: False}) will return None.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.utils.training_save">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.utils.</span></span><span class="sig-name descname"><span class="pre">training_save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.utils.training_save" title="Link to this definition"></a></dt>
+<dd><p>Saves the training results to a specified directory. If the directory doesn’t exist,
+it creates it before saving the results. The results are saved as a PyTorch tensor
+file with the given name.</p>
+<p>Parameters:
+- results (Tensor): The training results to be saved. This is typically a tensor</p>
+<blockquote>
+<div><p>containing model weights, training logs, or other relevant data.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>name (str): The name of the file where the results will be saved. The file will
+be saved with a <cite>.pt</cite> extension.</p></li>
+</ul>
+<p>This function ensures that the directory <cite>/training_data</cite> exists before
+saving the results. If the directory is missing, it is created, and the results
+are saved as a PyTorch tensor file with the specified name.</p>
+<p>Example:
+- training_save(results, ‘pglib_opf_case14_ieee’) will save the tensor <cite>results</cite> to a</p>
+<blockquote>
+<div><p>file named <cite>pglib_opf_case14_ieee.pt</cite> in the <cite>/training_data</cite> directory.</p>
+</div></blockquote>
+</dd></dl>
+
+</section>
+<section id="module-opf_realtime">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-opf_realtime" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.erase_temp_folder">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.</span></span><span class="sig-name descname"><span class="pre">erase_temp_folder</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.erase_temp_folder" title="Link to this definition"></a></dt>
+<dd><p>Removes temporary folders (.datasets and .cache) if they exist.</p>
+<p>This function checks if the directories <cite>/.datasets</cite> and
+<cite>/.cache</cite> exist. If they do, the function removes them
+using <cite>shutil.rmtree()</cite>. This is typically used to clean up temporary
+data storage after processing or to reset the environment.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.network_files">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.</span></span><span class="sig-name descname"><span class="pre">network_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_mutations</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.network_files" title="Link to this definition"></a></dt>
+<dd><p>Mutates the given network file and returns a list of all available network files in the datasets directory.</p>
+<p>This function first applies mutations to a specified network file and then scans the
+‘/.datasets’ directory for any <cite>.mat</cite> files representing network data.</p>
+<p>Parameters:
+- net (str): The name of the network file to mutate.
+- num_mutations (int): The number of mutations to apply to the network file.</p>
+<p>Returns:
+- list: A list of filenames (str) ending with ‘.mat’ from the ‘/.datasets’ directory.</p>
+<p>Notes:
+- The mutation is applied by calling the <cite>mutate_network</cite> function.
+- The returned list only includes files with a <cite>.mat</cite> extension.</p>
+<p>Example:
+- network_files(“network_1”, 10) would mutate “network_1” and return a list of <cite>.mat</cite> files from the datasets directory.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.run_opf_methods">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.</span></span><span class="sig-name descname"><span class="pre">run_opf_methods</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datasets_gnn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.run_opf_methods" title="Link to this definition"></a></dt>
+<dd><p>Executes multiple Optimal Power Flow (OPF) methods as specified and collects their results.</p>
+<p>Parameters:
+- method_names (list of str): List of OPF method names to execute. Each method name must correspond</p>
+<blockquote>
+<div><p>to a key in the <cite>opf_methods</cite> dictionary, where each key is a method and the associated value is
+a function for running OPF.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>net (MATPOWER Net): The MATPOWER network object to perform OPF on.</p></li>
+<li><dl class="simple">
+<dt>features (dict): Dictionary of parameters and settings used within each OPF method, including:</dt><dd><ul>
+<li><p>train (boolean): If True, it will generate training sets.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>verbose (bool): If True, displays detailed results and visualization of the OPF and network.</p></li>
+<li><p>datasets_gnn (list, optional): A list that stores the datasets generated during OPF execution,
+intended for training a neural network.</p></li>
+</ul>
+<p>Returns:
+- results (dict): Dictionary where each key is an OPF method name and the value is the results of</p>
+<blockquote>
+<div><p>that method’s OPF calculation.</p>
+</div></blockquote>
+<p>Notes:
+- If <cite>verbose</cite> is True, the function displays the initial network state and results for each OPF method, except while training.
+- Only methods present in the <cite>opf_methods</cite> dictionary will be executed; any unrecognized methods are logged as errors.
+- The <cite>datasets_gnn</cite> list is updated with new datasets generated during OPF execution if the <cite>train</cite> flag in <cite>features</cite> is set to True.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.show_metrics">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.</span></span><span class="sig-name descname"><span class="pre">show_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.show_metrics" title="Link to this definition"></a></dt>
+<dd><p>Displays aggregated and method-specific statistics from the given results.</p>
+<p>This function attempts to calculate the aggregated mean and method-specific means
+using the <cite>results_stats</cite> function. If successful, it prints these statistics.
+In case of an error (e.g., if <cite>results_stats</cite> raises an exception), an error
+message is printed indicating that the statistics could not be calculated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>results</strong> (list, dict, or other data structures (depending on the implementation of <cite>results_stats</cite>).) – The input data containing the results to be analyzed.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Exception</strong> – If an error occurs during the statistics calculation, it is caught and a message is printed.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.train_models">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.</span></span><span class="sig-name descname"><span class="pre">train_models</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">networks</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.train_models" title="Link to this definition"></a></dt>
+<dd><p>Trains GNN and PGNN models for a list of power networks.</p>
+<p>This function iterates over two model types (<cite>gnn</cite> and <cite>pgnn</cite>) and trains a corresponding model
+for each network specified in the <cite>networks</cite> list.</p>
+<ul class="simple">
+<li><p>For GNNs, it loads pre-processed <cite>.pt</cite> dataset files and trains using a DataLoader.</p></li>
+<li><p>For PGNNs, it runs an Octave script to generate the data from MATPOWER <cite>.m</cite> files,
+converts it into PyTorch Geometric format, and trains the model.</p></li>
+</ul>
+<p>Models are saved in the <cite>training_data</cite> directory under the root project path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>networks</strong> (<em>list</em><em> of </em><em>str</em>) – A list of network names (e.g., [‘case14’, ‘case30’]) for which models should be trained.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The function assumes the presence of <cite>LNN_inputs_train.m</cite> in the <cite>matpower</cite> directory
+to generate input data for PGNN models.</p></li>
+<li><p>Trained models are stored as <cite>.pth</cite> files, with naming format:
+<cite>&lt;network&gt;_gnn_model.pth</cite> or <cite>&lt;network&gt;_pgnn_model.pth</cite>.</p></li>
+<li><p>Uses a fixed number of training epochs: 5000 for GNNs and 30000 for PGNNs.</p></li>
+<li><p>Logs any exceptions that occur during training.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.training_phase">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.</span></span><span class="sig-name descname"><span class="pre">training_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.training_phase" title="Link to this definition"></a></dt>
+<dd><p>Determines whether the training phase should be executed based on the input features and
+returns the appropriate dataset for the graph neural network (GNN).</p>
+<p>This function checks if the ‘train’ key is present in the <cite>features</cite> dictionary and whether
+its value is set to <cite>True</cite>. If so, it initializes an empty list for the training datasets.
+If the ‘train’ key is not present or is set to <cite>False</cite>, it returns <cite>None</cite>.</p>
+<p>Parameters:
+- features (dict): A dictionary containing various features for training, which may include</p>
+<blockquote>
+<div><p>a key ‘train’ to specify if the model should be in training mode.</p>
+</div></blockquote>
+<p>Returns:
+- list or None: Returns an empty list <cite>[]</cite> if ‘train’ is <cite>True</cite>, or <cite>None</cite> if ‘train’ is</p>
+<blockquote>
+<div><p><cite>False</cite> or the key is absent in the <cite>features</cite> dictionary.</p>
+</div></blockquote>
+<p>Example:
+- training_phase({‘train’: True}) will return an empty list.
+- training_phase({‘train’: False}) will return None.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opf_realtime.training_save">
+<span class="sig-prename descclassname"><span class="pre">opf_realtime.</span></span><span class="sig-name descname"><span class="pre">training_save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opf_realtime.training_save" title="Link to this definition"></a></dt>
+<dd><p>Saves the training results to a specified directory. If the directory doesn’t exist,
+it creates it before saving the results. The results are saved as a PyTorch tensor
+file with the given name.</p>
+<p>Parameters:
+- results (Tensor): The training results to be saved. This is typically a tensor</p>
+<blockquote>
+<div><p>containing model weights, training logs, or other relevant data.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>name (str): The name of the file where the results will be saved. The file will
+be saved with a <cite>.pt</cite> extension.</p></li>
+</ul>
+<p>This function ensures that the directory <cite>/training_data</cite> exists before
+saving the results. If the directory is missing, it is created, and the results
+are saved as a PyTorch tensor file with the specified name.</p>
+<p>Example:
+- training_save(results, ‘pglib_opf_case14_ieee’) will save the tensor <cite>results</cite> to a</p>
+<blockquote>
+<div><p>file named <cite>pglib_opf_case14_ieee.pt</cite> in the <cite>/training_data</cite> directory.</p>
+</div></blockquote>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Oscar Cabrera Redondo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

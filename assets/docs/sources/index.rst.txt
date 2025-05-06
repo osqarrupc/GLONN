@@ -1,0 +1,68 @@
+.. OPF_realtime documentation master file, created by
+   sphinx-quickstart on Wed Nov  6 17:28:11 2024.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+GLONN Documentation
+==========================
+
+This documentation website details GLONN, a novel hybrid neural architecture that integrates Graph Neural Networks (GNNs) and Lagrangian Neural Networks to solve the Optimal Power Flow (OPF) problem efficiently and robustly. The proposed approach combines the structural learning power of GNNs with the interpretability and constraint-handling capabilities of Lagrangian methods.
+
+.. autosummary::
+   :toctree: generated/
+   :maxdepth: 2
+   :caption: Contents:
+
+   modules
+
+Features
+========
+
+- **Optimal Power Flow Formulation**: Describes how the traditional optimal power flow problem is solved using IPOPT through MATPOWER.
+- **Neural Networks**: Explains how GNN and GLONN are integrated into the project.
+- **Others**: Details graphical and other useful functions available in this documentation.
+
+Module Documentation
+====================
+
+The following modules are available:
+
+Optimal Power Flow Formulation
+------------------------------
+.. automodule:: opf_realtime.OPF_formulas
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Neural Network Models
+----------------------
+
+.. automodule:: opf_realtime.NN_models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Training Functions
+------------------
+
+.. automodule:: opf_realtime.train_nn
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Utils
+-----
+
+.. automodule:: opf_realtime.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Plotting Functions
+------------------
+
+.. automodule:: opf_realtime.graph
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
