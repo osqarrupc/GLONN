@@ -154,3 +154,23 @@
 .HUGE{
     font-size: 33px;
 }
+
+
+.horizontal-only{
+  margin: auto;
+  border-collapse: collapse;
+  border: none;
+}
+.horizontal-only th, 
+.horizontal-only td {
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
+.horizontal-only thead tr:first-child th {
+  border-top: none;
+}
+
+.horizontal-only tbody tr:last-child td {
+  border-bottom: 1px solid #ccc;
+}

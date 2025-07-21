@@ -1,0 +1,222 @@
+---
+layout: default
+title: "GLONN: A Graph-Based Lagrangian Neural Network for Optimal Power Flow"
+author: Óscar Cabrera Redondo & Sara Barja-Martinez & Mònica Aragüés-Peñalba & Samuel Galceran-Arellano
+date: June 2025
+abstract: The optimal power flow problem is fundamental in electrical networks for determining optimal power generation setpoints. However, near real-time solutions are required with the increasing penetration of renewable energy sources and power electronic devices. This paper introduces GLONN, a novel neural network architecture that integrates graph neural networks with Lagrangian principles to solve the DC optimal power flow problem. GLONN leverages the grid's structural information via graph convolutions and enforces physical feasibility through a Lagrangian-based loss formulation, enabling both fast inference and constraint satisfaction. We evaluate GLONN on benchmark electrical networks, comparing its performance against traditional solvers and baseline graph neural network models. Results show that GLONN achieves deviations of less than 10% from the global minimum of the objective function under normal conditions while reducing computation time by up to a factor of 40. These findings highlight the potential of hybrid physics-informed and topology-aware neural networks for real-time power system optimization.
+---
+<!-- <p class="Section">1 &ensp; Introduction</p>
+    <p class="BodyText2Col">Faster response times and more dynamic control strategies [1] are needed in the electrical grid due to the increasing penetration of renewable energy sources and power electronic devices. Optimal Power Flow (OPF), a fundamental tool that determines the most efficient generation dispatch in an electrical network ensuring efficiency and security, must be done faster. OPF has been a cornerstone of power system operation since its formalization in the early 1960s, where it emerged as a nonlinear optimization problem tailored to the electrical variables of the system [2]. </br>
+
+    As future power grids increasingly incorporate various distributed energy sources, they introduce greater stochasticity and rapid fluctuations in the system [3]. In this context, computational efficiency becomes a key criterion for evaluating different OPF approaches. The execution time of these methods depends on several factors, including the number of buses, the choice of initial conditions, the formulation of the objective function, and the specific constraints of the problem [4].</br>
+
+    However, conventional algorithms often fail to deliver fast and reliable solutions. To address these limitations, alternative methods have been explored, such as parallel computing techniques [1] and neural network-based models [4], which have demonstrated the potential to outperform traditional solvers in terms of computational speed. </br>
+
+    This paper proposes a novel hybrid neural architecture that integrates Graph (GNN) and Lagrangian Neural Networks (LNN) [5] to solve the OPF problem efficiently and robustly. The proposed approach, named GLONN, combines the structural learning power of GNNs with the interpretability and constraint-handling capabilities of Lagrangian methods. Unlike traditional data-driven approaches, the model requires no historical training data and generalizes well to unseen scenarios and system sizes.
+    </p>
+
+<p class="Section">2 &ensp; Methodology</p>
+    <p class="BodyText">Optimal Power Flow: OPF can be seen as an evolution of Economic Dispatch where the physical conditions of the system are integrated into the problem. The main objective of the OPF problem is to minimize or maximize an objective function subject to a set of physical and operational constraints. Traditionally, the objective is to minimize generation costs, but alternative goals may include maximizing market surplus, minimizing transmission losses, or reducing environmental impact [7]. While OPF is primarily used as a day-ahead operational planning tool [7], it is increasingly required to be solved in much shorter timeframes, such as every five minutes within one minute, or even within 30 seconds for self-healing after contingencies [7]. The DC-OPF formula that tries to reduce the generation cost can be also considered as:
+    \[
+    \begin{aligned}
+    \min \quad & f(\mathbf{P_{\mathrm{gen}}}) = \mathbf{P_{\mathrm{gen}}}^T \mathbf{c_2} \mathbf{P_{\mathrm{gen}}} + \mathbf{P_{\mathrm{gen}}}^T\mathbf{c_1} + \mathbf{c_0}^T \\[0.5em]
+    \text{s.t.} \quad & \sum_{i \in B}P_{\mathrm{gen}_{i}}-\sum_{i \in B}P_{\mathrm{con}_i}-\sum_{\left(i,j\right) \in L}P_{ij}=0 \\[0.5em]
+    & P_{\mathrm{gen}_i}^{\mathrm{min}} \leq P_{\mathrm{gen}_i} \leq P_{\mathrm{gen}_i}^{\mathrm{max}} \quad \forall i \in G \\[0.5em]
+    & P_{ij} \leq S_{ij}^{\mathrm{max}} \quad \forall \left(i,j\right) \in L \\[0.5em]
+    & -\theta_{ij}^\Delta \leq \theta_{i} - \theta_{j} \leq \theta_{ij}^\Delta \quad \forall i \in B
+    \end{aligned}
+    \]
+
+    The idea is to find the minimum of this function based on the constraints that are imposed in the system. The objective function creates a quadratic function subject to different constraints. Let's imagine a surface where we need to find the minimum subject to some limits, as can be seen in the next figure. These limits create boundaries that constraints where the minimum can be found. In the next figure, a non-linear objective function can be found in gray color but the constraints (red planes) are lineal.
+    </p>
+
+    <div id="three-container" style="width: 80%; height: 300px; margin: 2rem auto"></div>
+
+    <p class="BodyText2Col Justified">There are multiple iterative ways to find the minimum point using gradient calculations, such as the IPOPT solver does. The solution provided by solvers of a quadratic function will be always a global minimum as long as the constraints of the problem remain linear. However, if the optimization problem consists of a quadratic linear function and non-linear constraints, the problem is non-convex and the solution given by a solver could be a local minimum and not a global minimum. In the electrical system, we use the quadratic objective function as the typical electrical costs function for thermal power plants, but we need linear constraints to be sure that the results given are global and not local minima. The problem is that in the electrical network, most of the constraints are non-linear. Therefore, a common practice is to approximate the problem with linear constraints (DC-OPF) or to relax the problem through the quadratic convex (QC) or the second-order (SOC) cone relaxation methods.
+    </p> -->
+
+
+<p class="SubSection">1.2 &ensp; What are we proposing? GLONN</p>
+    <p class="BodyText Justified">In this paper, we are approximating the results with the DC-OPF formulation and solving the problem using a hybrid GNN and LNN that applies the constraints of the electrical network. This neural network is called <b>GLONN</b> and in the next section, the results of the DC-OPF for different electrical networks can be found.
+    </p>
+
+
+<p class="Section">3 &ensp; Case Study</p>
+    <p class="BodyText Justified">This article implement the OPF on the <a href="https://github.com/power-grid-lib/pglib-opf" target="_blank">Power Grid Lib</a> networks using the IPOPT solver and Neural Networks models. Below you can find the solutions of the IPOPT solver and GLONN.</p>
+    <div class="BodyText">
+      <label for="network-select">Choose a network:</label>
+      <select id="network-select" onchange="updateDisplay()">
+        <option value="">--Select a network--</option>
+        <option value="pglib_opf_case3_lmbd">pglib_opf_case3_lmbd</option>
+        <option value="pglib_opf_case3_lmbd__api">pglib_opf_case3_lmbd__api</option>
+        <option value="pglib_opf_case3_lmbd__sad">pglib_opf_case3_lmbd__sad</option>
+        <!-- <option value="pglib_opf_case14_ieee">pglib_opf_case14_ieee</option>
+        <option value="pglib_opf_case14_ieee__api">pglib_opf_case14_ieee_ -->_api</option>
+        <option value="pglib_opf_case30_ieee">pglib_opf_case30_ieee</option>
+        <option value="pglib_opf_case30_ieee__api">pglib_opf_case30_ieee__api</option>
+        <option value="pglib_opf_case30_ieee__sad">pglib_opf_case30_ieee__sad</option>
+        <!-- <option value="pglib_opf_case57_ieee">pglib_opf_case57_ieee</option>
+        <option value="pglib_opf_case57_ieee__api">pglib_opf_case57_ieee__api</option>
+        <option value="pglib_opf_case57_ieee__sad">pglib_opf_case57_ieee__sad</option> -->
+        <option value="pglib_opf_case162_ieee_dtc">pglib_opf_case162_ieee_dtc</option>
+        <option value="pglib_opf_case162_ieee_dtc__api">pglib_opf_case162_ieee_dtc__api</option>
+        <option value="pglib_opf_case162_ieee_dtc__sad">pglib_opf_case162_ieee_dtc__sad</option>
+      </select>
+
+    <label for="method-select" style="margin-left: 20px;">Choose a method:</label>
+    <select id="method-select" onchange="updateDisplay()">
+      <option value="">--Select a method--</option>
+      <option value="IPOPT">IPOPT</option>
+      <option value="GLONN">GLONN</option>
+    </select>
+    </div>
+
+    <div id="graph-display" style="margin-top: 20px;"></div>
+
+<p class="SubSection">3.1 &ensp; Table with results</p>
+    <p class="BodyText Justified">The next table depicts the results of GLONN which are also compared against the IPOPT solver solutions. In <a href="https://github.com/power-grid-lib/pglib-opf" target="_blank">Power Grid Lib</a>, it is also possible to find a list of results for the DC-OPF solved with <a href="https://github.com/lanl-ansi/PowerModels.jl" target="_blank">PowerModels.jl</a>
+    <table border="1" cellspacing="0" cellpadding="4" class="horizontal-only">
+      <caption>Results of the OPF using different methods across the tested networks</caption>
+      <thead>
+        <tr><th colspan="11"><strong>Normal Conditions</strong></th></tr>
+        <tr>
+          <th></th>
+          <th colspan="3">Costs ($)</th>
+          <th colspan="2">g<sub>NPBE</sub> (p.u.)</th>
+          <th colspan="2">CVS</th>
+          <th colspan="3">Time (s)</th>
+        </tr>
+        <tr>
+          <th>Electrical networks</th>
+          <th>IPOPT</th><th>GNN</th><th>GLONN</th>
+          <th>GNN</th><th>GLONN</th>
+          <th>GNN</th><th>GLONN</th>
+          <th>IPOPT</th><th>&#x2800;GNN</th><th>GLONN</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>pglib_opf_case3_lmbd</td>
+          <td>5693</td><td>5626</td><td>5652</td>
+          <td>0.0101</td><td>0.0072</td>
+          <td>0.2578</td><td>0.0271</td>
+          <td>0.0621</td><td>0.0006</td><td>0.0014</td>
+        </tr>
+        <tr>
+          <td>pglib_opf_case30_ieee</td>
+          <td>7504</td><td>7234</td><td>7113</td>
+          <td>0.0024</td><td>0.0067</td>
+          <td>3.4128</td><td>0.4912</td>
+          <td>0.0525</td><td>0.0007</td><td>0.0014</td>
+        </tr>
+        <tr>
+          <td>pglib_opf_case162_ieee_dtc</td>
+          <td>101270</td><td>102280</td><td>105665</td>
+          <td>0.0754</td><td>0.0862</td>
+          <td>0.4837</td><td>0.2085</td>
+          <td>0.0748</td><td>0.0008</td><td>0.0015</td>
+        </tr>
+        <tr>
+          <td><strong>Mean</strong></td>
+          <td></td><td></td><td></td>
+          <td><strong>0.0293</strong></td><td><strong>0.0333</strong></td>
+          <td><strong>1.3848</strong></td><td><strong>0.2423</strong></td>
+          <td><strong>0.0631</strong></td><td><strong>0.0007</strong></td><td><strong>0.0014</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <br>
+
+    <table border="1" cellspacing="0" cellpadding="4" class="horizontal-only">
+      <thead>
+        <tr><th colspan="11"><strong>Extreme Conditions</strong></th></tr>
+        <tr>
+          <th></th>
+          <th colspan="3">Costs ($)</th>
+          <th colspan="2">g<sub>NPBE</sub> (p.u.)</th>
+          <th colspan="2">CVS</th>
+          <th colspan="3">Time (s)</th>
+        </tr>
+        <tr>
+          <th>Electrical networks</th>
+          <th>IPOPT</th><th>GNN</th><th>GLONN</th>
+          <th>GNN</th><th>GLONN</th>
+          <th>GNN</th><th>GLONN</th>
+          <th>IPOPT</th><th>GNN</th><th>GLONN</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>pglib_opf_case3_lmbd__api</td><td>10432</td><td>10206</td><td>9991</td><td>0.0153</td><td>0.0092</td><td>0.2526</td><td>0.6849</td><td>0.0605</td><td>0.0006</td><td>0.0014</td></tr>
+        <tr><td>pglib_opf_case3_lmbd__sad</td><td>5849</td><td>5785</td><td>5652</td><td>1.3501</td><td>0.3620</td><td>0.3184</td><td>0.0627</td><td>0.0624</td><td>0.0006</td><td>0.0014</td></tr>
+        <!-- <tr><td>pglib_opf_case14_ieee__api</td><td>4664</td><td>2880</td><td>6462</td><td>0.0803</td><td>0.0052</td><td>26.6033</td><td>0.6179</td><td>0.0544</td><td>0.0020</td><td>0.0014</td></tr> -->
+        <tr><td>pglib_opf_case30_ieee__api</td><td>16185</td><td>13284</td><td>15202</td><td>0.0174</td><td>0.0047</td><td>15.5543</td><td>0.9184</td><td>0.0532</td><td>0.0008</td><td>0.0014</td></tr>
+        <tr><td>pglib_opf_case30_ieee__sad</td><td>7504</td><td>7234</td><td>7113</td><td>0.2417</td><td>0.2397</td><td>3.8774</td><td>0.9067</td><td>0.0536</td><td>0.0006</td><td>0.0014</td></tr>
+        <!-- <tr><td>pglib_opf_case57_ieee__api</td><td>33896</td><td>28123</td><td>42617</td><td>0.0581</td><td>0.0200</td><td>50.0196</td><td>0.2869</td><td>0.0542</td><td>0.0007</td><td>0.0014</td></tr> -->
+        <!-- <tr><td>pglib_opf_case57_ieee__sad</td><td>38404</td><td>34082</td><td>37228</td><td>3.6344</td><td>1.6275</td><td>11.2894</td><td>2.8141</td><td>0.0538</td><td>0.0006</td><td>0.0014</td></tr> -->
+        <tr><td>pglib_opf_case162_ieee_dtc__api</td><td>111746</td><td>111721</td><td>114681</td><td>0.0862</td><td>0.0949</td><td>0.4406</td><td>0.2283</td><td>0.0757</td><td>0.0008</td><td>0.0014</td></tr>
+        <tr><td>pglib_opf_case162_ieee_dtc__sad</td><td>103829</td><td>104900</td><td>105665</td><td>8.6345</td><td>8.0311</td><td>0.0772</td><td>0.5507</td><td>0.0747</td><td>0.0006</td><td>0.0014</td></tr>
+        <tr><td><strong>Mean</strong></td><td></td><td></td><td></td><td><strong>1.7242</strong></td><td><strong>1.4569</strong></td><td><strong>3.4201</strong></td><td><strong>0.5586</strong></td><td><strong>0.0634</strong></td><td><strong>0.0007</strong></td><td><strong>0.0014</strong></td></tr>
+      </tbody>
+    </table>
+
+  </p>
+
+<p class="Section">5 &ensp; Acknowledgment</p>
+    <p class="BodyText Justified normalsize">This web article was created using Hamish Sams's Jekyll template, available at this <a href="https://github.com/Hammie217/LatexJekyll" target="_blank">link</a>.</br></p>
+
+<!-- <p class="Section">6 &ensp; References</p>
+    <p class="BodyText Justified normalsize"">[1] Aragüés Peñalba, M., Nguyen, T.L., Caire, R., Sumper, A., Galceran Arellano, S. y Tran, Q.-T., 2020. General form of consensus optimization for distributed OPF in HVAC-VSC-HVDC systems. , ISSN 0142-0615.</br>
+
+    [2] Huneault, M. y Galiana, F.D., 1991. A survey of the optimal power flow literature. IEEE Transactions on Power Systems, vol. 6, no. 2, ISSN 0885-8950. DOI 10.1109/59.76723.</br>
+
+    [3] Yujie Tang, Dvijotham, K. y Low, S., 2017. Real-Time Optimal Power Flow. IEEE Transactions on Smart Grid, vol. 8, no. 6, ISSN 1949-3053. DOI 10.1109/TSG.2017.2704922.</br>
+
+    [4] Abdi, H., Beigvand, S.D. y Scala, M.L., 2017. A review of optimal power flow studies applied to smart grids and microgrids. Renewable & sustainable energy reviews, vol. 71, ISSN 1364-0321. DOI 10.1016/j.rser.2016.12.102.</br>
+
+    [5] Cranmer, Miles, et al. “Lagrangian Neural Networks.” ArXiv (Cornell University), 1 Jan. 2020, https://doi.org/10.48550/arxiv.2003.04630. Accessed 28 May 2025.</br>
+
+    [6] M. B. Cain, R. P. O’Neill, and A. Castillo, “History of Optimal Power Flow and Formulations,” 2012.</br>
+
+    [7] Capitanescu, F., 2016. Critical review of recent advances and further developments needed in AC optimal power flow. Electric power systems research, vol. 136, ISSN 0378-7796. DOI 10.1016/j.epsr.2016.02.008.</p> -->
+
+<script>
+function showSelectedNetwork() {
+  var select = document.getElementById("network-select");
+  var output = document.getElementById("network-info");
+
+  // Mapeo de opciones con sus rutas de archivo
+  var networkMap = {
+    "network1": "./assets/graphs/pglib_opf_case3_lmbd.html",
+    "network2": "./assets/graphs/pglib_opf_case3_lmbd__api.html",
+    "network3": "./assets/graphs/pglib_opf_case3_lmbd__sad.html",
+    "network4": "./assets/graphs/pglib_opf_case14_ieee.html",
+    "network5": "./assets/graphs/pglib_opf_case14_ieee__api.html",
+    "network6": "./assets/graphs/pglib_opf_case162_ieee_dtc.html",
+    "network7": "./assets/graphs/pglib_opf_case162_ieee_dtc__api.html",
+    "network8": "./assets/graphs/pglib_opf_case162_ieee_dtc__sad.html"
+  };
+
+  var selectedValue = select.value;
+
+  if (networkMap[selectedValue]) {
+    output.innerHTML = '<iframe src="' + networkMap[selectedValue] + '" width="100%" height="600" frameborder="0"></iframe>';
+  } else {
+    output.innerHTML = "";
+  }
+}
+function updateDisplay() {
+  const network = document.getElementById("network-select").value;
+  const method = document.getElementById("method-select").value;
+  const output = document.getElementById("graph-display");
+
+  if (network && method) {
+    const filename = `${network}_${method}.html`; // Ej: IEEE14_GLONN.html
+    const path = `./assets/graphs/${filename}`;
+    output.innerHTML = `<iframe src="${path}" width="100%" height="600" frameborder="0"></iframe>`;
+  } else {
+    output.innerHTML = ""; // Limpia si falta algo
+  }
+}
+</script>
